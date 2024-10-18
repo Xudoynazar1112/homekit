@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
-import 'swiper/css/effect-coverflow';
+import "swiper/css/effect-coverflow";
 import { EffectCards } from "swiper/modules";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const Afzalliklar = ({ p1, p2, p3 }) => {
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div className="flex flex-col items-center justify-center w-full mt-10">
       <div className="flex flex-col items-center justify-center w-3/4 bg-[#fdeaea] rounded-lg pt-10">
-        <h1 className="text-4xl md:text-6xl">{t('service.afvzal')}</h1>
+        <h1 className="text-4xl md:text-6xl">{t("service.afvzal")}</h1>
         <ul>
           <li className="m-10 p-5 rounded-xl bg-[#bdbdbd44] flex gap-8">
             <img src="/images/icon1.png" alt="photo" className="w-14 h-14" />
@@ -35,7 +37,7 @@ const Afzalliklar = ({ p1, p2, p3 }) => {
 };
 
 const FormBtns = ({ img, des }) => {
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div className="flex flex-col items-center w-full">
       <img src={img} alt="photo" className="w-10" />
@@ -45,13 +47,45 @@ const FormBtns = ({ img, des }) => {
 };
 
 const Services = () => {
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
+  const SendMessage = (event) => {
+    event.preventDefault();
+    const token = "1361985908:AAHThjmeSwnG-9iBNmVqjBpv4X2B2bwh66M";
+    const chat_id = 843414567;
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+
+    const message = `Ism: ${name}. \nTelefon raqam: ${phone}`;
+
+    axios({
+      url: url,
+      method: "POST",
+      data: {
+        chat_id: chat_id,
+        text: message,
+      },
+    })
+      .then((res) => {
+        document.getElementById("contact").reset();
+        console.log("Muvaffaqiyatli jo'natildi!");
+        toast.success("Muvaffaqiyatli jo'natildi!");
+      })
+      .catch((error) => {
+        toast.error("Xatolik yuz berdi, iltimos qayta urinib ko'ring!");
+        console.log("Xatolik yuz berdi: ", error);
+      });
+  };
   return (
-    <div id="service" className="bg-fon bg-no-repeat bg-cover w-[100vw] h-full py-10 flex flex-col items-center justify-center">
+    <div
+      id="service"
+      className="bg-fon bg-no-repeat bg-cover w-[100vw] h-full py-10 flex flex-col items-center justify-center"
+    >
       <div className="flex flex-col items-center text-white py-14">
-        <h1 className="text-4xl md:text-6xl mb-3">{t('footer.bizXizmat')}</h1>
+        <h1 className="text-4xl md:text-6xl mb-3">{t("footer.bizXizmat")}</h1>
         <p className="text-md md:text-lg w-2/3 text-center mb-3">
-          {t('serviceBody')}
+          {t("serviceBody")}
         </p>
         <div className="flex flex-col gap-10 w-2/3 my-10">
           <div className="bg-[#d6d6d639] p-5 md:p-20 md:flex items-center gap-10 w-full rounded-2xl">
@@ -61,10 +95,10 @@ const Services = () => {
               className="w-[375px] h-[280px] rounded-2xl"
             />
             <div className="text-wrap pl-5 flex flex-col gap-10">
-              <h1 className="text-3xl md:text-5xl">{t('service.kontent1head')}</h1>
-              <p>
-              {t('service.kontent1body')}
-              </p>
+              <h1 className="text-3xl md:text-5xl">
+                {t("service.kontent1head")}
+              </h1>
+              <p>{t("service.kontent1body")}</p>
             </div>
           </div>
           <div className="md:flex gap-10 w-full">
@@ -75,10 +109,10 @@ const Services = () => {
                 className="w-[360px] h-[250px] rounded-2xl"
               />
               <div className="text-wrap pl-5 flex flex-col gap-10">
-                <h1 className="text-3xl md:text-5xl">{t('service.kontent2head')}</h1>
-                <p>
-                {t('service.kontent2body')}
-                </p>
+                <h1 className="text-3xl md:text-5xl">
+                  {t("service.kontent2head")}
+                </h1>
+                <p>{t("service.kontent2body")}</p>
               </div>
             </div>
             <div className="bg-[#d6d6d639] p-5 md:p-14 flex flex-col items-center gap-10 rounded-2xl">
@@ -88,10 +122,10 @@ const Services = () => {
                 className="w-[360px] h-[250px] rounded-2xl"
               />
               <div className="text-wrap pl-5 flex flex-col gap-10">
-                <h1 className="text-3xl md:text-5xl">{t('service.kontent3head')}</h1>
-                <p>
-                {t('service.kontent3body')}
-                </p>
+                <h1 className="text-3xl md:text-5xl">
+                  {t("service.kontent3head")}
+                </h1>
+                <p>{t("service.kontent3body")}</p>
               </div>
             </div>
           </div>
@@ -102,10 +136,10 @@ const Services = () => {
               className="w-[375px] h-[280px] rounded-2xl"
             />
             <div className="text-wrap pl-5 flex flex-col gap-10">
-              <h1 className="text-3xl md:text-5xl">{t('service.kontent4head')}</h1>
-              <p>
-              {t('service.kontent4body')}
-              </p>
+              <h1 className="text-3xl md:text-5xl">
+                {t("service.kontent4head")}
+              </h1>
+              <p>{t("service.kontent4body")}</p>
             </div>
           </div>
           <div className="bg-[#d6d6d639] p-5 md:p-20 md:flex items-center gap-10 rounded-2xl">
@@ -115,20 +149,18 @@ const Services = () => {
               className="w-[375px] h-[280px] rounded-2xl"
             />
             <div className="text-wrap pl-5 flex flex-col gap-10">
-              <h1 className="text-3xl md:text-5xl">{t('service.kontent5head')}</h1>
-              <p>
-              {t('service.kontent5body')}
-              </p>
+              <h1 className="text-3xl md:text-5xl">
+                {t("service.kontent5head")}
+              </h1>
+              <p>{t("service.kontent5body")}</p>
             </div>
           </div>
         </div>
       </div>
       <div className="hidden md:flex md:flex-col md:items-center md:w-full md:h-[40rem] md:relative">
         <div className="bg-[#fdeaea] rounded-2xl w-2/3 h-[70%] pt-16 pl-10 pr-[35%] absolute bottom-0">
-          <h1>{t('haqida')}</h1>
-          <p>
-          {t('service.haqidaBody')}
-          </p>
+          <h1>{t("haqida")}</h1>
+          <p>{t("service.haqidaBody")}</p>
         </div>
         <div className="absolute bg-white w-[30%] h-full right-56 bottom-5 p-10 pl-16 rounded-lg special">
           <div className="flex items-center justify-evenly  w-[60%]">
@@ -138,11 +170,10 @@ const Services = () => {
               <span>O'zbekiston</span>
             </div>
           </div>
-          <p className="pt-5 w-[90%] text-xl">
-            {t('service.country')}
-          </p>
+          <p className="pt-5 w-[90%] text-xl">{t("service.country")}</p>
           <p className="mt-5 w-[85%]">
-            <FontAwesomeIcon icon={faLocationDot} size="xl" /> {t('service.toshkent')}
+            <FontAwesomeIcon icon={faLocationDot} size="xl" />{" "}
+            {t("service.toshkent")}
           </p>
           <iframe
             width="90%"
@@ -159,7 +190,7 @@ const Services = () => {
       </div>
       <div className="my-10 w-full">
         <Swiper
-          effect={'cards'}
+          effect={"cards"}
           grabCursor={true}
           modules={[EffectCards]}
           className="mySwip"
@@ -171,10 +202,10 @@ const Services = () => {
                 className="w-1/2"
                 alt="photo"
               />
-              <h1 className="text-3xl md:text-5xl">{t('serviceSlider.iqlim')}</h1>
-              <p>
-                {t('serviceSlider.iqlimBody')}
-              </p>
+              <h1 className="text-3xl md:text-5xl">
+                {t("serviceSlider.iqlim")}
+              </h1>
+              <p>{t("serviceSlider.iqlimBody")}</p>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -184,10 +215,10 @@ const Services = () => {
                 className="w-1/2"
                 alt="photo"
               />
-              <h1 className="text-3xl md:text-5xl">{t('serviceSlider.oqish')}</h1>
-              <p>
-                {t('serviceSlider.oqishBody')}
-              </p>
+              <h1 className="text-3xl md:text-5xl">
+                {t("serviceSlider.oqish")}
+              </h1>
+              <p>{t("serviceSlider.oqishBody")}</p>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -197,8 +228,10 @@ const Services = () => {
                 className="w-1/2"
                 alt="photo"
               />
-              <h1 className="text-3xl md:text-5xl">{t('serviceSlider.video')}</h1>
-              <p>{t('serviceSlider.videoBody')}</p>
+              <h1 className="text-3xl md:text-5xl">
+                {t("serviceSlider.video")}
+              </h1>
+              <p>{t("serviceSlider.videoBody")}</p>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -208,10 +241,10 @@ const Services = () => {
                 className="w-1/2"
                 alt="photo"
               />
-              <h1 className="text-3xl md:text-5xl">{t('serviceSlider.media')}</h1>
-              <p>
-                {t('serviceSlider.mediaBody')}
-              </p>
+              <h1 className="text-3xl md:text-5xl">
+                {t("serviceSlider.media")}
+              </h1>
+              <p>{t("serviceSlider.mediaBody")}</p>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -221,8 +254,10 @@ const Services = () => {
                 className="w-1/2"
                 alt="photo"
               />
-              <h1 className="text-3xl md:text-5xl">{t('serviceSlider.xavfsizlik')}</h1>
-              <p>{t('serviceSlider.xavfsizlikBody')}</p>
+              <h1 className="text-3xl md:text-5xl">
+                {t("serviceSlider.xavfsizlik")}
+              </h1>
+              <p>{t("serviceSlider.xavfsizlikBody")}</p>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -232,8 +267,10 @@ const Services = () => {
                 className="w-1/2"
                 alt="photo"
               />
-              <h1 className="text-3xl md:text-5xl">{t('serviceSlider.interkom')}</h1>
-              <p>{t('serviceSlider.interkomBody')}</p>
+              <h1 className="text-3xl md:text-5xl">
+                {t("serviceSlider.interkom")}
+              </h1>
+              <p>{t("serviceSlider.interkomBody")}</p>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -243,16 +280,16 @@ const Services = () => {
                 className="w-1/2"
                 alt="photo"
               />
-              <h1 className="text-3xl md:text-5xl">{t('serviceSlider.parda')}</h1>
-              <p className="w-2/3">
-                {t('serviceSlider.pardaBody')}
-              </p>
+              <h1 className="text-3xl md:text-5xl">
+                {t("serviceSlider.parda")}
+              </h1>
+              <p className="w-2/3">{t("serviceSlider.pardaBody")}</p>
             </div>
           </SwiperSlide>
         </Swiper>
       </div>
       <div className="bg-white w-full flex flex-col items-center justify-center py-5">
-        <h1>{t('serviceType.turlari')}</h1>
+        <h1>{t("serviceType.turlari")}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 mt-10 gap-10">
           <div className="flex flex-col items-center justify-center gap-10">
             <a
@@ -264,9 +301,7 @@ const Services = () => {
                 alt="photo"
                 className="w-7 h-7"
               />
-              <p className="text-wrap">
-              {t('serviceType.tur1')}
-              </p>
+              <p className="text-wrap">{t("serviceType.tur1")}</p>
             </a>
             <a
               href="/"
@@ -277,9 +312,7 @@ const Services = () => {
                 alt="photo"
                 className="w-7 h-7"
               />
-              <p className="text-wrap">
-              {t('serviceType.tur2')}
-              </p>
+              <p className="text-wrap">{t("serviceType.tur2")}</p>
             </a>
             <a
               href="/"
@@ -290,9 +323,7 @@ const Services = () => {
                 alt="photo"
                 className="w-7 h-7"
               />
-              <p className="text-wrap">
-              {t('serviceType.tur3')}
-              </p>
+              <p className="text-wrap">{t("serviceType.tur3")}</p>
             </a>
           </div>
           <div className="flex flex-col items-center justify-center gap-10">
@@ -305,9 +336,7 @@ const Services = () => {
                 alt="photo"
                 className="w-7 h-7"
               />
-              <p className="text-wrap">
-              {t('serviceType.tur4')}
-              </p>
+              <p className="text-wrap">{t("serviceType.tur4")}</p>
             </a>
             <a
               href="/"
@@ -318,9 +347,7 @@ const Services = () => {
                 alt="photo"
                 className="w-7 h-7"
               />
-              <p className="text-wrap">
-              {t('serviceType.tur5')}
-              </p>
+              <p className="text-wrap">{t("serviceType.tur5")}</p>
             </a>
             <a
               href="/"
@@ -331,63 +358,50 @@ const Services = () => {
                 alt="photo"
                 className="w-7 h-7"
               />
-              <p className="text-wrap">
-                {t('serviceType.tur6')}
-              </p>
+              <p className="text-wrap">{t("serviceType.tur6")}</p>
             </a>
           </div>
         </div>
       </div>
-      <div>
+      <div className="block md:flex">
         <Afzalliklar
-          p1={
-            t('avfzalCard.p1')
-          }
-          p2={
-            t('avfzalCard.p2')
-          }
-          p3={
-            t('avfzalCard.p3')
-          }
+          p1={t("avfzalCard.p1")}
+          p2={t("avfzalCard.p2")}
+          p3={t("avfzalCard.p3")}
         />
         <Afzalliklar
-          p1={
-            t('avfzalCard.p1')
-          }
-          p2={
-            t('avfzalCard.p2')
-          }
-          p3={
-            t('avfzalCard.p3')
-          }
+          p1={t("avfzalCard.p1")}
+          p2={t("avfzalCard.p2")}
+          p3={t("avfzalCard.p3")}
         />
         <Afzalliklar
-          p1={
-            t('avfzalCard.p1')
-          }
-          p2={
-            t('avfzalCard.p2')
-          }
-          p3={
-            t('avfzalCard.p3')
-          }
+          p1={t("avfzalCard.p1")}
+          p2={t("avfzalCard.p2")}
+          p3={t("avfzalCard.p3")}
         />
       </div>
       <div className="bg-[#ffffff1a] w-full p-10 text-white flex flex-col items-center justify-center mt-5">
         <div className="">
-          <p>{t('operator')}</p>
-          <h1 className="text-4xl">{t('tel')}</h1>
+          <p>{t("operator")}</p>
+          <h1 className="text-4xl">{t("tel")}</h1>
         </div>
         <form
           id="contact"
+          onSubmit={SendMessage}
           className="flex flex-col w-full md:w-[80%] gap-10 p-10 border rounded-[30px] mt-10"
         >
           <input
+            required
+            name="name"
+            id="name"
             type="text"
             placeholder="Ism"
             className="w-full bg-[#ffffff00] p-1 border-b focus:outline-none"
           />
           <input
+            required
+            name="phone"
+            id="phone"
             type="number"
             placeholder="Telefon raqam"
             className="w-full bg-[#ffffff00] p-1 border-b focus:outline-none"
@@ -483,7 +497,7 @@ const Services = () => {
             />
           </div>
           <button type="submit" className="bg-[#e1053f]">
-            {t('yuborish')}
+            {t("yuborish")}
           </button>
         </form>
       </div>
