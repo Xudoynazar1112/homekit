@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faTelegram } from "@fortawesome/free-brands-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const {t, i18n} = useTranslation();
   return (
-    <div className="w-full bg-[#9A304C] text-white px-56 py-14">
-      <div className="grid grid-cols-3 gap-16 pb-7">
+    <div id="footer" className="w-[100vw] bg-[#9A304C] text-white px-24 md:px-56 py-14">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-16 pb-7">
         <div>
           <a href="/">
             <img src="/images/logo.png" alt="logo" className="w-24 mb-8" />
@@ -27,31 +29,31 @@ const Footer = () => {
         <div>
           <ul className="flex flex-col gap-8">
             <li>
-              <p>Kompaniya haqida</p>
+              <p>{t('footer.kompaniyaHaqida')}</p>
             </li>
             <li>
-              <a href="/">Bosh sahifa</a>
+              <a href="/">{t('footer.bosh')}</a>
             </li>
-            <li><a href="#">Biz haqimizda</a></li>
-            <li><a href="#">Aloqa</a></li>
+            <li><a href="#">{t('haqida')}</a></li>
+            <li><a href="#">{t('aloqa')}</a></li>
           </ul>
         </div>
         <div>
           <ul className="flex flex-col gap-8">
             <li>
-              <p>Xizmatlarimiz</p>
+              <p>{t('xizmat')}</p>
             </li>
             <li>
-              <a href="/">Bizning afzalliklarimiz</a>
+              <a href="/">{t('footer.afvzallik')}</a>
             </li>
-            <li><a href="#">Bizning xizmatlarimiz</a></li>
-            <li><a href="#">Xizmatlarimiz haqida</a></li>
+            <li><a href="#">{t('footer.bizXizmat')}</a></li>
+            <li><a href="#">{t('footer.xizmatHaqida')}</a></li>
           </ul>
         </div>
       </div> <hr />
       <div className="flex justify-between pt-7">
-        <p>Barcha huquqlar himoyalangan</p>
-        <p>Barcha huquqlar himoyalangan: <a href="https://t.me/it_time_admin" className="underline">IT-TIME</a></p>
+        <p className="hidden md:inline">{t('footer.huquqHimoya')}</p>
+        <p>{t('footer.huquqHimoya')}: <a href="https://t.me/it_time_admin" className="underline">IT-TIME</a></p>
       </div>
     </div>
   );

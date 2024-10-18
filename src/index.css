@@ -82,17 +82,10 @@ option {
   background-color: rgba(0, 0, 0, 0.9);
   height: 60px;
 }
-.abdulla{
-  /* width: 100%; */
-  object-fit: cover;
-  width: 100vw;
-  height: 81.4vh;
-}
-
 
 
 .swiper {
-  width: 98.9vw;
+  width: 99vw;
   height: 83vh;
 }
 
@@ -115,4 +108,24 @@ option {
   box-shadow: -8px 10px 0px 0px rgba(0,0,0,1);
   -webkit-box-shadow: -8px 10px 0px 0px rgba(0,0,0,1);
   -moz-box-shadow: -8px 10px 0px 0px rgba(0,0,0,1);
+}
+
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 50vw;
+    /* height: 300px; */
+}
+
+.mySwip {
+  max-width: 50rem;
+  height: 40rem;
+}
+
+@media screen and (max-width: 767px) {
+  .mySwip {
+    margin: 2em;
+    max-width: 23rem;
+  }
 }
