@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 const Footer = () => {
   const {t, i18n} = useTranslation();
   return (
-    <div id="footer" className="w-[100vw] bg-[#9A304C] text-white px-24 md:px-56 py-14">
+    <div id="footer" className="w-full bg-[#9A304C] text-white px-24 md:px-56 py-14">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-16 pb-7">
         <div>
           <a href="/">

@@ -5,13 +5,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import TextTruncate from "react-text-truncate"; // recommend
 
 // import required modules
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { useTranslation } from "react-i18next";
 
 const MainPage = () => {
-  const {t, i18n} = useTranslation()
+  const { t, i18n } = useTranslation();
   return (
     <>
       <div>
@@ -24,8 +25,8 @@ const MainPage = () => {
             modules={[Pagination, Navigation, Autoplay]}
             className="mySwiper"
             autoplay={{
-              delay:7000,
-              disableOnInteraction: false
+              delay: 7000,
+              disableOnInteraction: false,
             }}
             loop:true
           >
@@ -33,13 +34,21 @@ const MainPage = () => {
               <div className="bg-slide1 bg-center bg-no-repeat w-full h-full text-white text-start">
                 <div className="w-full h-full backdrop-brightness-50 md:pt-24 md:pl-56 md:pr-[430px] p-10">
                   <h1 className="text-4xl md:text-6xl">
-                    {t('mainSlider1header')}
+                    {t("mainSlider1header")}
                   </h1>
-                  <p className="my-10 text-lg md:text-2xl">
-                    {t('mainSlider1body')}
-                  </p>
-                  <a href="#contact" className="bg-[#B50A3F] rounded-3xl px-5 py-3">
-                    {t('boglanish')}
+                  <div className="my-10 text-lg md:text-2xl">
+                    <TextTruncate
+                      line={3}
+                      element="p"
+                      truncateText="…"
+                      text={t("mainSlider1body")}
+                    />
+                  </div>
+                  <a
+                    href="#contact"
+                    className="bg-[#B50A3F] rounded-3xl px-5 py-3"
+                  >
+                    {t("boglanish")}
                   </a>
                 </div>
               </div>
@@ -48,13 +57,21 @@ const MainPage = () => {
               <div className="bg-slide2 bg-center bg-no-repeat bg-cover w-full h-full text-white text-start">
                 <div className="w-full h-full backdrop-brightness-50 md:pt-24 md:pl-56 md:pr-[630px] p-10">
                   <h1 className="text-4xl md:text-6xl">
-                  {t('mainSlider2header')}
+                    {t("mainSlider2header")}
                   </h1>
-                  <p className="my-10 text-lg md:text-2xl">
-                  {t('mainSlider2body')}
-                  </p>
-                  <a href="#contact" className="bg-[#B50A3F] mt-10 rounded-3xl px-5 py-3">
-                  {t('boglanish')}
+                  <div className="my-10 text-lg md:text-2xl">
+                    <TextTruncate
+                      line={3}
+                      element="p"
+                      truncateText="…"
+                      text={t("mainSlider2body")}
+                    />
+                  </div>
+                  <a
+                    href="#contact"
+                    className="bg-[#B50A3F] mt-10 rounded-3xl px-5 py-3"
+                  >
+                    {t("boglanish")}
                   </a>
                 </div>
               </div>
@@ -63,13 +80,21 @@ const MainPage = () => {
               <div className="bg-slide3 bg-center bg-no-repeat bg-cover w-full h-full text-white text-start">
                 <div className="w-full h-full  backdrop-brightness-50 md:pt-24 md:pl-56 md:pr-[630px] p-10">
                   <h1 className="text-4xl md:text-6xl">
-                  {t('mainSlider3header')}
+                    {t("mainSlider3header")}
                   </h1>
-                  <p className="my-10 text-lg md:text-2xl">
-                  {t('mainSlider3body')}
-                  </p>
-                  <a href="#contact" className="bg-[#B50A3F] mt-10 rounded-3xl px-5 py-3">
-                  {t('boglanish')}
+                  <div className="my-10 text-lg md:text-2xl">
+                    <TextTruncate
+                      line={3}
+                      element="p"
+                      truncateText="…"
+                      text={t("mainSlider3body")}
+                    />
+                  </div>
+                  <a
+                    href="#contact"
+                    className="bg-[#B50A3F] mt-10 rounded-3xl px-5 py-3"
+                  >
+                    {t("boglanish")}
                   </a>
                 </div>
               </div>
@@ -77,12 +102,22 @@ const MainPage = () => {
             <SwiperSlide>
               <div className="bg-slide4 bg-center bg-no-repeat bg-cover w-full h-full text-white text-start">
                 <div className="w-full h-full backdrop-brightness-50 md:pt-24 md:pl-56 md:pr-[630px] p-10">
-                  <h1 className="text-4xl md:text-6xl">{t('mainSlider4header')}</h1>
-                  <p className="my-10 text-lg md:text-2xl">
-                    {t('mainSlider4body')}
-                  </p>
-                  <a href="#contact" className="bg-[#B50A3F] mt-10 rounded-3xl px-5 py-3">
-                    {t('boglanish')}
+                  <h1 className="text-4xl md:text-6xl">
+                    {t("mainSlider4header")}
+                  </h1>
+                  <div className="my-10 text-lg md:text-2xl">
+                    <TextTruncate
+                      line={3}
+                      element="p"
+                      truncateText="…"
+                      text={t("mainSlider4body")}
+                    />
+                  </div>
+                  <a
+                    href="#contact"
+                    className="bg-[#B50A3F] mt-10 rounded-3xl px-5 py-3"
+                  >
+                    {t("boglanish")}
                   </a>
                 </div>
               </div>
@@ -95,8 +130,6 @@ const MainPage = () => {
 };
 
 export default MainPage;
-
-
 
 // import React from "react";
 // import { Swiper, SwiperSlide } from "swiper/react";
@@ -208,4 +241,3 @@ export default MainPage;
 // };
 
 // export default MainPage;
-

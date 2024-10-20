@@ -80,14 +80,13 @@ const Services = () => {
   return (
     <div
       id="service"
-      className="bg-fon bg-no-repeat bg-cover w-[100vw] h-full py-10 flex flex-col items-center justify-center"
-    >
+      className="bg-fon bg-no-repeat bg-cover w-full h-full py-10 flex flex-col items-center justify-center">
       <div className="flex flex-col items-center text-white py-14">
         <h1 className="text-4xl md:text-6xl mb-3">{t("footer.bizXizmat")}</h1>
         <p className="text-md md:text-lg w-2/3 text-center mb-3">
           {t("serviceBody")}
         </p>
-        <div className="flex flex-col gap-10 w-2/3 my-10">
+        <div className="flex flex-col gap-10 w-[90%] md:w-2/3 my-10">
           <div className="bg-[#d6d6d639] p-5 md:p-20 md:flex items-center gap-10 w-full rounded-2xl">
             <img
               src="/images/t7.088bfdb5c8b1977c8892.jpg"
